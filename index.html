@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Masoumeh Masoumi - Front End Developer portfolio and profile website." />
+  <meta name="keywords" content="Masoumeh Masoumi, Front End Developer, Vue.js, Nuxt.js, JavaScript, Portfolio" />
+  <meta name="author" content="Masoumeh Masoumi" />
+  <meta name="robots" content="index, follow" />
+  <title>Masoumeh Masoumi | Front End Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #eef3fb;
+      --text: #172033;
+      --muted: #5e6b85;
+      --primary: #6d5efc;
+      --primary-2: #4f46e5;
+      --accent: #14b8a6;
+      --border: #dbe4f0;
+      --shadow: 0 16px 40px rgba(20, 30, 60, 0.08);
+      --radius: 20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(109,94,252,.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(20,184,166,.08), transparent 24%),
+        var(--bg);
+      color:var(--text);
+    }
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .soft{
+      background:var(--surface-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+    }
+    .nav-btn{
+      transition:all .2s ease;
+    }
+    .nav-btn.active, .nav-btn:hover{
+      background:var(--primary);
+      color:white;
+      transform:translateY(-1px);
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.45rem .8rem;
+      border-radius:999px;
+      background:rgba(109,94,252,.08);
+      color:var(--primary-2);
+      font-size:.85rem;
+      font-weight:600;
+      border:1px solid rgba(109,94,252,.14);
+    }
+    .section{animation:fadeIn .35s ease}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)}}
+    .skill{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, #fff, #f8fbff);
+      border-radius:16px;
+      padding:14px 16px;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .skill:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(20,30,60,.08)}
+    .section-title{
+      letter-spacing:-0.03em;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <header class="sticky top-0 z-50 border-b bg-white/75 backdrop-blur-xl" style="border-color: var(--border);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <p class="text-xs uppercase tracking-[0.24em] text-[var(--muted)] font-semibold">Profile</p>
+            <h1 class="text-2xl font-extrabold tracking-tight">Masoumeh Masoumi</h1>
+          </div>
+          <button type="button" class="md:hidden soft px-4 py-2 text-sm font-semibold" onclick="toggleMenu()">Menu</button>
+        </div>
+
+        <nav aria-label="Primary navigation" id="navMenu" class="hidden md:block">
+          <ul class="flex flex-col md:flex-row gap-2 md:items-center">
+            <li><button type="button" class="nav-btn active soft px-4 py-2 font-medium" onclick="showSection('about', this)">About</button></li>
+            <li><button type="button" class="nav-btn soft px-4 py-2 font-medium" onclick="showSection('experience', this)">Experience</button></li>
+            <li><button type="button" class="nav-btn soft px-4 py-2 font-medium" onclick="showSection('skills', this)">Skills</button></li>
+            <li><button type="button" class="nav-btn soft px-4 py-2 font-medium" onclick="showSection('contact', this)">Contact</button></li>
+          </ul>
+        </nav>
+      </div>
+
+      <nav aria-label="Mobile navigation" id="mobileNav" class="md:hidden hidden pb-4">
+        <ul class="grid gap-2">
+          <li><button type="button" class="nav-btn active soft w-full px-4 py-3 font-medium text-left" onclick="showSection('about', this)">About</button></li>
+          <li><button type="button" class="nav-btn soft w-full px-4 py-3 font-medium text-left" onclick="showSection('experience', this)">Experience</button></li>
+          <li><button type="button" class="nav-btn soft w-full px-4 py-3 font-medium text-left" onclick="showSection('skills', this)">Skills</button></li>
+          <li><button type="button" class="nav-btn soft w-full px-4 py-3 font-medium text-left" onclick="showSection('contact', this)">Contact</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <section id="about" class="section">
+      <div class="grid gap-6 lg:grid-cols-[1.35fr_0.95fr] items-start">
+        <div class="card p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="chip">Front End Developer</span>
+            <span class="chip">Vue.js | Nuxt.js | JavaScript</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight section-title leading-tight mb-4">
+            Masoumeh Masoumi
+          </h2>
+          <p class="text-lg font-semibold text-[var(--muted)] mb-6">
+            Front End Developer specializing in Vue.js, Nuxt.js, and modern JavaScript.
+          </p>
+
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] text-[var(--muted)] font-semibold">Email</p>
+              <p class="mt-2 font-semibold break-all">masoumehmasouminia@gmail.com</p>
+            </div>
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] text-[var(--muted)] font-semibold">Phone</p>
+              <p class="mt-2 font-semibold">+98 9389814271</p>
+            </div>
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] text-[var(--muted)] font-semibold">Location</p>
+              <p class="mt-2 font-semibold">Tehran, Iran</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card p-6 sm:p-8">
+          <h3 class="text-xl font-bold mb-4">Professional Summary</h3>
+          <p class="text-[var(--muted)] leading-7">
+            I am a Front-End Developer passionate about building scalable, user-friendly, and responsive web applications. Specialized in Vue.js and Nuxt.js, with solid experience in modern UI/UX design, multilingual websites, and SEO-optimized solutions. Skilled in integrating front-end technologies with WordPress and React, and creating smooth, engaging interfaces with a strong design background.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="experience" class="section hidden mt-8">
+      <div class="mb-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Work Experience</p>
+        <h2 class="text-3xl font-extrabold tracking-tight mt-2 section-title">Professional Journey</h2>
+      </div>
+
+      <div class="space-y-5">
+        <article class="card p-6">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Frontend Developer (Vue.js | React.js) — Layers.app</h3>
+              <p class="text-[var(--muted)] font-medium">3D Printing Service Shop Maker</p>
+            </div>
+            <p class="text-sm font-semibold text-[var(--primary-2)]">2024 - 2025 | Full time | Remote</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-[var(--muted)] leading-7">
+            <li>Developed responsive Vue.js and Nuxt.js user interfaces for a 3D printing platform.</li>
+            <li>Built multilingual landing pages optimized for performance and SEO.</li>
+            <li>Collaborated on new product features and improved UX through clean, scalable code.</li>
+          </ul>
+        </article>
+
+        <article class="card p-6">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Frontend Developer (Vue.js | Nuxt.js & WordPress) — 3DFAST</h3>
+              <p class="text-[var(--muted)] font-medium">Online 3D Printing Service</p>
+            </div>
+            <p class="text-sm font-semibold text-[var(--primary-2)]">2023 - 2024 | Full time | Remote</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-[var(--muted)] leading-7">
+            <li>Designed and implemented UI components with Vue.js and integrated them with WordPress backend.</li>
+            <li>Created responsive landing pages and enhanced product visibility through SEO improvements.</li>
+            <li>Delivered user-friendly, multilingual designs with a focus on accessibility and performance.</li>
+          </ul>
+        </article>
+
+        <article class="card p-6">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Graphic & Web Designer — Freelancer</h3>
+            </div>
+            <p class="text-sm font-semibold text-[var(--primary-2)]">2020 - 2022</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-[var(--muted)] leading-7">
+            <li>Designed company brand identities including logos, typography, and color palettes.</li>
+            <li>Created brochures, labels, and business cards for clients.</li>
+            <li>Developed WordPress websites with SEO best practices.</li>
+          </ul>
+        </article>
+
+        <article class="card p-6">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Office Employee — Cultural Center of the Ivory Coast Embassy, Iran</h3>
+            </div>
+            <p class="text-sm font-semibold text-[var(--primary-2)]">2018</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-[var(--muted)] leading-7">
+            <li>Managed filing, organizing, and office workflows.</li>
+            <li>Designed labels, brochures, and maintained WordPress-based websites.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section hidden mt-8">
+      <div class="mb-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Strengths & Skills</p>
+        <h2 class="text-3xl font-extrabold tracking-tight mt-2 section-title">What I Do Best</h2>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <div class="card p-6">
+          <h3 class="text-xl font-bold mb-4">Strengths</h3>
+          <ul class="space-y-3 text-[var(--muted)] leading-7">
+            <li>Strong background in Vue.js/Nuxt.js application development</li>
+            <li>Experienced in creating SEO-friendly, multilingual, and responsive websites</li>
+            <li>Skilled in combining front-end coding with graphic design for seamless UI/UX</li>
+            <li>Ability to work remotely in cross-functional teams</li>
+          </ul>
+        </div>
+
+        <div class="card p-6">
+          <h3 class="text-xl font-bold mb-4">Skills</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="skill">Vue.js</div>
+            <div class="skill">Nuxt.js</div>
+            <div class="skill">React.js</div>
+            <div class="skill">JavaScript (ES6+)</div>
+            <div class="skill">HTML5, CSS3</div>
+            <div class="skill">Tailwind CSS</div>
+            <div class="skill">Bootstrap</div>
+            <div class="skill">Responsive Web Design</div>
+            <div class="skill">Landing Page Development</div>
+            <div class="skill">Multilingualization</div>
+            <div class="skill">SEO Optimization</div>
+            <div class="skill">Figma</div>
+            <div class="skill">Adobe Illustrator</div>
+            <div class="skill">Photoshop</div>
+            <div class="skill">CorelDRAW</div>
+            <div class="skill">WordPress</div>
+            <div class="skill">Microsoft Office Suite</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section hidden mt-8">
+      <div class="mb-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Contact</p>
+        <h2 class="text-3xl font-extrabold tracking-tight mt-2 section-title">Profile Information</h2>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[1fr_0.85fr] items-start">
+        <div class="card p-6 sm:p-8">
+          <h3 class="text-xl font-bold mb-4">Contact Details</h3>
+          <div class="space-y-4 text-[var(--muted)]">
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] font-semibold">Name</p>
+              <p class="mt-2 font-semibold text-[var(--text)]">Masoumeh Masoumi</p>
+            </div>
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] font-semibold">Email</p>
+              <p class="mt-2 font-semibold text-[var(--text)] break-all">masoumehmasouminia@gmail.com</p>
+            </div>
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] font-semibold">Telephone</p>
+              <p class="mt-2 font-semibold text-[var(--text)]">+98 9389814271</p>
+            </div>
+            <div class="soft p-4">
+              <p class="text-xs uppercase tracking-[0.2em] font-semibold">Location</p>
+              <p class="mt-2 font-semibold text-[var(--text)]">Tehran, Iran</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card p-6 sm:p-8">
+          <h3 class="text-xl font-bold mb-4">About My Profile</h3>
+          <p class="text-[var(--muted)] leading-7">
+            This website is dedicated to my professional profile, experience, strengths, and skills as a Front End Developer and designer.
+          </p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t mt-8 bg-white/70" style="border-color: var(--border);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <p class="text-sm text-[var(--muted)]">&copy; 2026 Masoumeh Masoumi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function toggleMenu() {
+      mobileNav.classList.toggle('hidden');
+    }
+
+    function showSection(id, btn) {
+      sections.forEach(section => section.classList.toggle('hidden', section.id !== id));
+      navButtons.forEach(button => button.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const titles = {
+        about: 'Masoumeh Masoumi | Front End Developer',
+        experience: 'Experience | Masoumeh Masoumi',
+        skills: 'Skills | Masoumeh Masoumi',
+        contact: 'Contact | Masoumeh Masoumi'
+      };
+      document.title = titles[id] || 'Masoumeh Masoumi';
+      if (window.innerWidth < 768) mobileNav.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
