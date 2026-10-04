@@ -1,0 +1,37 @@
+:root {
+  --color-primary: #76b9ed;
+  --color-primary-contrast: #17364f;
+  --color-bg: #f5f7fb;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef3fb;
+  --color-text: #172033;
+  --color-muted: #5e6b85;
+  --color-primary-dark: #438fc8;
+  --color-accent: #14b8a6;
+  --color-border: #dbe4f0;
+  --color-primary-wash: rgba(118, 185, 237, 0.12);
+  --color-primary-border: rgba(67, 143, 200, 0.22);
+  --color-shadow: rgba(20, 30, 60, 0.08);
+  --color-shadow-hover: rgba(20, 30, 60, 0.08);
+  --color-glow-primary: rgba(118, 185, 237, 0.16);
+  --color-glow-accent: rgba(20, 184, 166, 0.08);
+  --color-surface-glass: rgba(255, 255, 255, 0.75);
+  --color-surface-footer: rgba(255, 255, 255, 0.7);
+  --color-skill-bottom: #f8fbff;
+  --font-heading: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --radius: 20px;
+  --radius-small: 16px;
+
+  /* Compatibility aliases used by the current page styles. */
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --surface-2: var(--color-surface-alt);
+  --text: var(--color-text);
+  --muted: var(--color-muted);
+  --primary: var(--color-primary);
+  --primary-2: var(--color-primary-dark);
+  --accent: var(--color-accent);
+  --border: var(--color-border);
+  --shadow: 0 16px 40px var(--color-shadow);
+}
